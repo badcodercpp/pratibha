@@ -27,7 +27,13 @@ console.log(read)
 @P()
 @Div()
 class App extends Component {
-  _click_p=e=>{
+  constructor(props){
+    super(props);
+    this.Link=this.constructor.Link;
+    this.Div=this.constructor.Div;
+    this.P=this.constructor.P
+  }
+  _click_p= e =>{
     e.preventDefault();
     e.stopPropagation();
     alert("hi")
@@ -38,22 +44,19 @@ class App extends Component {
     return (
       <div className="App">
         {
-            this.constructor.isTestable
+            this.Link({href:"/ajay_jha",style:{color:"red"}},"click me")
         }
         {
-            this.constructor.Link({href:"/ajay_jha",style:{color:"red"}},"click me")
+            this.Link({href:"/haha",style:{color:"blue"}},"click me different action")
         }
         {
-            this.constructor.Link({href:"/haha",style:{color:"blue"}},"click me different action")
+            this.P({style:{color:"green"},onClick:this._click_p},"clickable paragraph")
         }
         {
-            this.constructor.P({style:{color:"green"},onClick:this._click_p},"clickable paragraph")
-        }
-        {
-            this.constructor.Div({style:{color:"green"},onClick:this._click_p},
+            this.Div({style:{color:"green"},onClick:this._click_p},
             [
-              this.constructor.Link({href:"/ajay_jha",style:{color:"yellow"},key:0},"clickable as children"),
-              this.constructor.P({style:{color:"green"},onClick:this._click_p,key:1},"clickable paragraph")
+              this.Link({href:"/ajay_jha",style:{color:"yellow"},key:0},"clickable as children"),
+              this.P({style:{color:"green"},onClick:this._click_p,key:1},"clickable paragraph")
             ])
         }
       </div>
